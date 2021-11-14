@@ -25,7 +25,7 @@ export default class StoreForunValidator {
 	 *    ```
 	 */
   public schema = schema.create({
-	  forun: schema.string()
+	  nome_forun: schema.string()
   })
 
 	/**

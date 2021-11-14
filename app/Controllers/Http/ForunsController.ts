@@ -15,12 +15,34 @@ export default class ForunsController {
     return forunDB
   }
 
-  public async show ({}: HttpContextContract) {
+  public async show ({params, response}: HttpContextContract) {
+    try {
+      const forunDB = await Forun.findOrFail(params.id)
+      return forunDB  
+    } catch (error) {
+      response.status(400).send("Forun não encontrado!!!")
+    }
   }
 
-  public async update ({}: HttpContextContract) {
+  public async update ({request, params, response}: HttpContextContract) {
+    const {nome_forun} = await request.validate(StoreForunValidator)
+    try {
+      const forunDB = await Forun.findOrFail(params.id)
+      forunDB.nome_forun = nome_forun
+      await forunDB.save()
+      return forunDB
+    } catch (error) {
+      response.status(400).send("Forun não encontrado!!!")  
+    }
   }
 
-  public async destroy ({}: HttpContextContract) {
+  public async destroy ({params, response}: HttpContextContract) {
+    try {
+      const forunDB = await Forun.findOrFail(params.id)   
+      await forunDB.delete()
+      return forunDB
+    } catch (error) {
+      response.status(400).send("Forun não encontrado!!!")    
+    }
   }
 }
