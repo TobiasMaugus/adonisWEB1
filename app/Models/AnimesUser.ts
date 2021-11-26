@@ -7,10 +7,10 @@ export default class AnimesUser extends BaseModel {
   public id: number
 
   @column()
-  public userId: number
+  public user_id: number
 
   @column()
-  public animeId: number
+  public animes_id: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

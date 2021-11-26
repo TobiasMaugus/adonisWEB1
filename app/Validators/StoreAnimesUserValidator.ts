@@ -25,8 +25,8 @@ export default class StoreAnimesUserValidator {
 	 *    ```
 	 */
   public schema = schema.create({
-	userId: schema.number(),
-	animeId: schema.number()
+	user_id: schema.number(),
+	animes_id: schema.number()
   })
 
 	/**

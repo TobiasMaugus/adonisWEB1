@@ -10,7 +10,7 @@ export default class AnimesUsersController {
 
   public async store ({request, auth}: HttpContextContract) {
     const data = await request.validate(StoreAnimesUserValidator)
-    const forunDB = await AnimesUser.create({...data, userId: auth.user?.id})
+    const forunDB = await AnimesUser.create({...data, user_id: auth.user?.id})
     return forunDB
   }
 
@@ -24,11 +24,11 @@ export default class AnimesUsersController {
   }
 
   public async update ({request, params, response}: HttpContextContract) {
-    const {userId, animeId} = await request.validate(StoreAnimesUserValidator)
+    const {user_id, animes_id} = await request.validate(StoreAnimesUserValidator)
     try {
       const forunDB = await AnimesUser.findOrFail(params.id)
-      forunDB.userId = userId
-      forunDB.animeId = animeId
+      forunDB.user_id = user_id
+      forunDB.animes_id = animes_id
       await forunDB.save()
       return forunDB
     } catch (error) {

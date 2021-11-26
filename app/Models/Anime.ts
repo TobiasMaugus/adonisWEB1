@@ -9,8 +9,6 @@ export default class Anime extends BaseModel {
   @column()
   public nome_anime: string
 
-  @column()
-  public userId: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -26,4 +24,8 @@ export default class Anime extends BaseModel {
     pivotTable: 'animes_users'  
   })
   public UsuarioViu: ManyToMany<typeof User>
+
+  static get table(){
+    return 'animes'
+  }
 }

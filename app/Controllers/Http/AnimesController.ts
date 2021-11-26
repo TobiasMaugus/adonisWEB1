@@ -8,9 +8,9 @@ export default class AnimesController {
     return animeDB
   }
 
-  public async store ({request, auth}: HttpContextContract) {
+  public async store ({request}: HttpContextContract) {
     const data = await request.validate(StoreAnimeValidator)
-    const animeDB = await Anime.create({...data, userId: auth.user?.id})
+    const animeDB = await Anime.create({...data})
     return animeDB
   }
 
